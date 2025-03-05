@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <title>Festa do Izack</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #128C7E;
+        }
+        .chat-container {
+    max-width: 500px;
+    margin: 0 auto;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #e5ddd5 url('https://raw.githubusercontent.com/your-username/your-repo/main/bike.png') center/60% no-repeat;
+}
+        .header {
+            background: #075e54;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .chat-area {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        .message {
+            max-width: 75%;
+            padding: 8px 15px;
+            margin: 8px 0;
+            border-radius: 7.5px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: messageIn 0.3s forwards;
+        }
+        .received {
+            background: white;
+            margin-right: auto;
+            border-top-left-radius: 0;
+        }
+        .sent {
+            background: #dcf8c6;
+            margin-left: auto;
+            border-top-right-radius: 0;
+        }
+        .input-area {
+            padding: 10px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: sticky;
+            bottom: 0;
+        }
+        .input-field {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background: white;
+        }
+        .send-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #128C7E;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @keyframes messageIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="header">
+            <img src="https://media-gru2-2.cdn.whatsapp.net/v/t61.24694-24/430341732_729764188972592_8724087305104507034_n.jpg?ccb=11-4&oh=01_Q5AaIMatGGrrgHAyaiFtbxH0XPro0IUU9eMvKxhWTxS0Or2b&oe=67D4639F&_nc_sid=5e03e0&_nc_cat=108" alt="IZACKDUARTE">
+            <div>
+                <h3>IZACK DUARTE 🎉</h3>
+                <small>online</small>
+            </div>
+        </div>
+
+        <div class="chat-area" id="chatArea"></div>
+
+        <div class="input-area" id="inputArea" style="display: none;">
+            <input type="text" class="input-field" id="userInput" placeholder="Digite sua mensagem...">
+            <button class="send-button" onclick="handleInput()">➤</button>
+        </div>
+    </div>
+
+    <script>
+      
+        let userData = {};
+
+        window.onload = function() {
+    setTimeout(function() { addMessage("Heeeey! Adivinha quem está fazendo aniversário?! 🤗"); }, 1000);
+    setTimeout(function() { addMessage("Euuuu! E quero muito comemorar com pessoas especiais! ⭐"); }, 2000);
+    setTimeout(function() { addMessage("Vai ser INCRÍVEL! Dia 14/03, das 19h às 23h, no super Restaurante Toka do Véi! 🎉"); }, 3000);
+    setTimeout(function() {
+        addMessage("Vem celebrar comigo! Primeiro, me conta... Qual é o seu nome? 🥳");
+        showInput();
+    }, 4000);
+}
+
+        function showTyping() {
+    document.querySelector('.header small').textContent = 'digitando...';
+}
+
+function showOnline() {
+    document.querySelector('.header small').textContent = 'online';
+}
+
+// Add this to your message functions:
+function addMessage(text, received = true) {
+    if (received) {
+        showTyping();
+        setTimeout(() => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${received ? 'received' : 'sent'}`;
+            messageDiv.textContent = text;
+            document.getElementById('chatArea').appendChild(messageDiv);
+            messageDiv.scrollIntoView({ behavior: 'smooth' });
+            showOnline();
+        }, 1000);
+    } else {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${received ? 'received' : 'sent'}`;
+        messageDiv.textContent = text;
+        document.getElementById('chatArea').appendChild(messageDiv);
+        messageDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+        function showInput() {
+            document.getElementById('inputArea').style.display = 'flex';
+            document.getElementById('userInput').focus();
+        }
+
+        function hideInput() {
+            document.getElementById('inputArea').style.display = 'none';
+        }
+       
+function startAuthentication() {
+    const uniqueCode = generateUniqueCode();
+    const authDiv = document.createElement('div');
+    authDiv.className = 'message received';
+    authDiv.innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+            <h3>🎯 Acesse o Convite</h3>
+            <div id="qrcode"></div>
+            <input type="text" id="authCode" placeholder="Digite o código do QR" style="padding: 10px; margin: 10px; border-radius: 10px; border: 1px solid #128C7E;">
+            <button onclick="validateQRCode()" style="background: #128C7E; color: white; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer;">Confirmar</button>
+        </div>
+    `;
+    document.getElementById('chatArea').appendChild(authDiv);
+    
+    // Add QR Code library
+    const qrScript = document.createElement('script');
+    qrScript.src = "https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js";
+    qrScript.onload = () => {
+        QRCode.toCanvas(document.getElementById('qrcode'), uniqueCode, {width: 200});
+    };
+    document.head.appendChild(qrScript);
+}
+
+function generateUniqueCode() {
+    return 'IZACK' + Math.random().toString(36).substr(2, 6).toUpperCase();
+}
+function saveConfirmation(name, response) {
+    const data = {
+        timestamp: new Date().toLocaleString('pt-BR'),
+        name: name,
+        response: response
+    };
+
+    google.script.run
+        .withSuccessHandler(function(result) {
+            console.log('Dados salvos com sucesso:', data);
+        })
+        .withFailureHandler(function(error) {
+            console.error('Erro ao salvar:', error);
+        })
+        .appendToSheet([data.timestamp, data.name, data.response]);
+}
+function handleInput() {
+    const input = document.getElementById('userInput');
+    const value = input.value.trim();
+    
+    if (!value) return;
+    
+    addMessage(value, false);
+    input.value = '';
+    
+    if (!userData.name) {
+        const names = value.split(' ');
+        if (names.length >= 2) {
+            userData.name = value;
+            setTimeout(() => {
+                addMessage(`${names[0]}, você confirma presença? (sim/não)`);
+            }, 1000);
+        } else {
+            addMessage("Por favor, digite seu nome e sobrenome 📝");
+        }
+    } else if (value.toLowerCase() === 'sim') {
+        const rowData = [
+            new Date().toLocaleString('pt-BR'),
+            userData.name,
+            'Confirmado',
+            'Festa do Izack',
+            'Restaurante Toka do Véi',
+            '14/03/2024',
+            '19h às 23h'
+        ];
+        
+        google.script.run
+            .withSuccessHandler(() => {
+                setTimeout(() => {
+                    addMessage("Sua presença está confirmada! Não falte, vai ser incrível! 🎉");
+                }, 1000);
+                
+                setTimeout(() => {
+                    addMessage("Ótimo! Aqui está tudo que você precisa 🎉");
+                }, 1000);
+                
+                setTimeout(() => {
+                    const shareDiv = document.createElement('div');
+                    shareDiv.className = 'message received';
+                    shareDiv.innerHTML = `
+                    <a href="#" class="whatsapp-button" onclick="shareLocation()" style="display: block; margin-bottom: 10px;">
+                    🗺️ Ver Localização
+                     </a>
+                     <a href="#" class="whatsapp-button" onclick="shareMenu()" style="display: block;">
+                     📖 Ver Cardápio
+                      </a>
+                      `;
+                    document.getElementById('chatArea').appendChild(shareDiv);
+                    
+                    setTimeout(() => {
+                        addMessage("Yaay! Mal posso esperar para comemorar com você! 🎉");
+                        setTimeout(() => {
+                            addMessage("Até dia 14/03! Vai ser incrível! ⭐️");
+                            const creditDiv = document.createElement('div');
+                            creditDiv.style.cssText = 'text-align: center; padding: 20px; color: #888; font-size: 12px;';
+                            creditDiv.innerHTML = 'Desenvolvido por duarte-starktech 🚀';
+                            document.getElementById('chatArea').appendChild(creditDiv);
+                        }, 1000);
+                    }, 1000);
+                }, 3000);
+            })
+            .withFailureHandler((error) => {
+                console.error('Erro ao salvar:', error);
+            })
+            .saveToSheet(rowData);
+        
+        hideInput();
+    } else if (value.toLowerCase() === 'não' || value.toLowerCase() === 'nao') {
+        const rowData = [
+            new Date().toLocaleString('pt-BR'),
+            userData.name,
+            'Não Confirmado',
+            'Festa do Izack',
+            'Restaurante Toka do Véi',
+            '14/03/2024',
+            '19h às 23h'
+        ];
+        
+        google.script.run.saveToSheet(rowData);
+        addMessage("Obrigado pelo retorno! 🎉");
+        hideInput();
+    }
+}
+        function shareLocation() {
+    window.open("https://maps.app.goo.gl/H2yS9yv6btRs5KJk8", '_blank');
+}
+
+function shareMenu() {
+    window.open("https://cardapio.acao.digital/toka-do-vei", '_blank');
+}
+  
+    </script>
+</body>
+</html>
