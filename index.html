@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CRED-JACK</title>
-    <!-- Meta tags atualizadas -->
+    <!-- Meta tags com emoji para identificação de gênero -->
     <meta name="title" content="LEYDIANE💄">
     <meta name="description" content="Gerencie suas compras e parcelas de forma simples e eficiente">
     <meta property="og:type" content="website">
@@ -31,6 +31,7 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
         }
         
         #app-container {
@@ -51,7 +52,6 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            transition: opacity 0.3s;
         }
         
         .loading-container {
@@ -77,14 +77,14 @@
         
         .user-name {
             font-size: 20px;
-            color: #ff69b4; /* Cor rosa para destacar o nome */
             margin-bottom: 20px;
             font-weight: bold;
+            /* Cor será definida dinamicamente pelo JavaScript */
         }
         
         .loading-spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #ff69b4;
+            border-top: 4px solid #ff69b4; /* Cor padrão, será alterada pelo JS */
             border-radius: 50%;
             width: 30px;
             height: 30px;
@@ -104,12 +104,15 @@
             position: absolute;
             top: 0;
             left: 0;
+            background-color: white;
+            z-index: 900;
         }
         
         iframe {
             width: 100%;
             height: 100%;
             border: none;
+            background-color: white;
         }
         
         /* Estilos para o botão de instalação */
@@ -118,7 +121,7 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #ff69b4;
+            /* Cor será definida dinamicamente pelo JavaScript */
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -128,10 +131,6 @@
             cursor: pointer;
             border: none;
             font-size: 16px;
-        }
-        
-        #install-button:hover {
-            background-color: #ff5ba7;
         }
         
         /* Estado offline */
@@ -150,7 +149,7 @@
         }
         
         .retry-button {
-            background-color: #ff69b4;
+            /* Cor será definida dinamicamente pelo JavaScript */
             color: white;
             border: none;
             padding: 10px 20px;
@@ -159,27 +158,96 @@
             cursor: pointer;
             font-size: 16px;
         }
+        
+        /* Modal para nome do usuário */
+        #name-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 85%;
+            width: 300px;
+        }
+        
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+        
+        #user-name-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        /* Seleção de gênero */
+        .gender-selection {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .gender-option {
+            flex: 1;
+            padding: 10px;
+            margin: 0 5px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .gender-option.selected {
+            border-color: #4a4a4a;
+            background-color: #f8f8f8;
+        }
+        
+        .gender-option:first-child.selected {
+            border-color: #4e9af1;
+            background-color: #eef5ff;
+        }
+        
+        .gender-option:last-child.selected {
+            border-color: #ff69b4;
+            background-color: #fff0f7;
+        }
+        
+        #save-name-button {
+            /* Cor será definida dinamicamente pelo JavaScript */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
     <div id="app-container">
-        <!-- Tela de carregamento com cumprimentos -->
-        <div id="loading-screen">
-            <div class="loading-container">
-                <img src="https://i.ibb.co/vx4BtbSv/Sem-t-tulo-1.png" alt="Logo" class="logo">
-                <div class="greeting" id="greeting">Olá!</div>
-                <div class="user-name">LEYDIANE 💄</div>
-                <div class="loading-spinner"></div>
-            </div>
-        </div>
-        
-        <!-- Mensagem offline -->
-        <div id="offline-message">
-            <p>Você está offline. Verifique sua conexão com a internet.</p>
-            <button class="retry-button" onclick="window.location.reload()">Tentar Novamente</button>
-        </div>
-        
-        <!-- Frame do aplicativo -->
+        <!-- Frame do aplicativo (colocado primeiro para pré-carregar) -->
         <div class="frame-container" id="frame-container">
             <iframe 
                 id="app-frame"
@@ -189,6 +257,41 @@
                 loading="eager"
                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-top-navigation">
             </iframe>
+        </div>
+        
+        <!-- Tela de carregamento com cumprimentos (colocada por cima) -->
+        <div id="loading-screen">
+            <div class="loading-container">
+                <img src="https://i.ibb.co/vx4BtbSv/Sem-t-tulo-1.png" alt="Logo" class="logo">
+                <div class="greeting" id="greeting">Olá!</div>
+                <div class="user-name" id="user-name">Bem-vindo(a)!</div>
+                <div class="loading-spinner" id="loading-spinner"></div>
+            </div>
+        </div>
+        
+        <!-- Mensagem offline -->
+        <div id="offline-message">
+            <p>Você está offline. Verifique sua conexão com a internet.</p>
+            <button class="retry-button" id="retry-button" onclick="window.location.reload()">Tentar Novamente</button>
+        </div>
+        
+        <!-- Modal para inserir nome -->
+        <div id="name-modal">
+            <div class="modal-content">
+                <div class="modal-title">Como você gostaria de ser chamado(a)?</div>
+                <input type="text" id="user-name-input" placeholder="Digite seu nome" maxlength="20">
+                
+                <div class="gender-selection">
+                    <div class="gender-option" id="male-option">
+                        <span>👨 Masculino</span>
+                    </div>
+                    <div class="gender-option" id="female-option">
+                        <span>👩 Feminino</span>
+                    </div>
+                </div>
+                
+                <button id="save-name-button">Salvar</button>
+            </div>
         </div>
         
         <!-- Botão de instalação -->
@@ -202,9 +305,87 @@
         const installButton = document.getElementById('install-button');
         const offlineMessage = document.getElementById('offline-message');
         const greeting = document.getElementById('greeting');
+        const userName = document.getElementById('user-name');
+        const nameModal = document.getElementById('name-modal');
+        const userNameInput = document.getElementById('user-name-input');
+        const saveNameButton = document.getElementById('save-name-button');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const retryButton = document.getElementById('retry-button');
+        const maleOption = document.getElementById('male-option');
+        const femaleOption = document.getElementById('female-option');
         
-        // Variável para o prompt de instalação
-        let deferredPrompt;
+        // Cores baseadas no gênero
+        const colors = {
+            male: '#4e9af1',    // Azul
+            female: '#ff69b4',  // Rosa
+            neutral: '#7e57c2'  // Roxo (neutro)
+        };
+        
+        // Emojis baseados no gênero
+        const emojis = {
+            male: '👨',
+            female: '💄',
+            neutral: '👤'
+        };
+        
+        // Variável para armazenar o gênero selecionado
+        let selectedGender = 'neutral';
+        
+        // Função para aplicar o tema baseado no gênero
+        function applyTheme(gender) {
+            const color = colors[gender] || colors.neutral;
+            
+            // Aplicar cor ao nome do usuário
+            userName.style.color = color;
+            
+            // Aplicar cor ao spinner
+            loadingSpinner.style.borderTopColor = color;
+            
+            // Aplicar cor aos botões
+            installButton.style.backgroundColor = color;
+            retryButton.style.backgroundColor = color;
+            saveNameButton.style.backgroundColor = color;
+            
+            // Salvar a preferência
+            localStorage.setItem('userGender', gender);
+            selectedGender = gender;
+        }
+        
+        // Função para extrair emoji e gênero da meta tag
+        function detectGenderFromMetaTag() {
+            const metaTitle = document.querySelector('meta[name="title"]');
+            if (!metaTitle) return null;
+            
+            const titleContent = metaTitle.getAttribute('content');
+            
+            // Verificar emojis específicos
+            if (titleContent.includes('💄') || 
+                titleContent.includes('👩') || 
+                titleContent.includes('👧') || 
+                titleContent.includes('👱‍♀️')) {
+                return 'female';
+            } else if (titleContent.includes('👨') || 
+                      titleContent.includes('👦') || 
+                      titleContent.includes('👴') || 
+                      titleContent.includes('🧔')) {
+                return 'male';
+            }
+            
+            return null;
+        }
+        
+        // Configurar seleção de gênero no modal
+        maleOption.addEventListener('click', () => {
+            maleOption.classList.add('selected');
+            femaleOption.classList.remove('selected');
+            selectedGender = 'male';
+        });
+        
+        femaleOption.addEventListener('click', () => {
+            femaleOption.classList.add('selected');
+            maleOption.classList.remove('selected');
+            selectedGender = 'female';
+        });
         
         // Configurar saudação baseada no horário
         function setGreeting() {
@@ -212,15 +393,114 @@
             
             if (hour >= 5 && hour < 12) {
                 greeting.textContent = 'Bom dia!';
-            } else if (hour >= 12 && hour < 18) {
+                        } else if (hour >= 12 && hour < 18) {
                 greeting.textContent = 'Boa tarde!';
             } else {
                 greeting.textContent = 'Boa noite!';
             }
         }
         
-        // Inicializar a saudação
+        // Função para obter o nome e gênero do usuário
+        function getUserInfo() {
+            // Verificar se já existe um nome e gênero salvos
+            const storedName = localStorage.getItem('userName');
+            const storedGender = localStorage.getItem('userGender');
+            
+            // Se tiver informações salvas, usá-las
+            if (storedName) {
+                userName.textContent = storedName;
+                
+                if (storedGender) {
+                    applyTheme(storedGender);
+                    
+                    // Adicionar emoji baseado no gênero
+                    const emoji = emojis[storedGender];
+                    if (!userName.textContent.includes(emoji)) {
+                        userName.textContent += ' ' + emoji;
+                    }
+                    
+                    return;
+                }
+            }
+            
+            // Tentar detectar gênero da meta tag
+            const detectedGender = detectGenderFromMetaTag();
+            
+            // Tentar obter o nome da meta tag title
+            const metaTitle = document.querySelector('meta[name="title"]');
+            if (metaTitle) {
+                const titleContent = metaTitle.getAttribute('content');
+                // Remover emoji e espaços extras
+                const cleanName = titleContent.replace(/[^\w\s]/gi, '').trim();
+                
+                if (cleanName) {
+                    userName.textContent = cleanName;
+                    
+                    // Se detectou gênero, aplicar tema e salvar
+                    if (detectedGender) {
+                        applyTheme(detectedGender);
+                        
+                        // Adicionar emoji baseado no gênero
+                        userName.textContent += ' ' + emojis[detectedGender];
+                        
+                        // Salvar as informações
+                        localStorage.setItem('userName', cleanName);
+                        return;
+                    }
+                }
+            }
+            
+            // Se chegou aqui, mostrar o modal para o usuário inserir o nome
+            // Mas primeiro, vamos verificar se é a primeira execução
+            const isFirstRun = !localStorage.getItem('appLaunched');
+            if (isFirstRun || !storedName) {
+                // Marcar que o app já foi executado
+                localStorage.setItem('appLaunched', 'true');
+                
+                // Mostrar o modal após um pequeno atraso
+                setTimeout(() => {
+                    nameModal.style.display = 'flex';
+                }, 1000);
+            } else {
+                // Aplicar tema neutro se não tiver gênero definido
+                applyTheme('neutral');
+            }
+        }
+        
+        // Configurar o botão de salvar nome
+        saveNameButton.addEventListener('click', () => {
+            const name = userNameInput.value.trim();
+            if (name) {
+                // Salvar nome
+                localStorage.setItem('userName', name);
+                
+                // Aplicar tema baseado no gênero selecionado
+                applyTheme(selectedGender);
+                
+                // Atualizar nome com emoji
+                userName.textContent = name + ' ' + emojis[selectedGender];
+                
+                // Fechar modal
+                nameModal.style.display = 'none';
+            } else {
+                // Destacar o input se estiver vazio
+                userNameInput.style.border = '1px solid red';
+                setTimeout(() => {
+                    userNameInput.style.border = '1px solid #ddd';
+                }, 1000);
+            }
+        });
+        
+        // Permitir pressionar Enter no input
+        userNameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                saveNameButton.click();
+            }
+        });
+        
+        // Inicializar a saudação e o nome
         setGreeting();
+        getUserInfo();
         
         // Verificar conexão com a internet
         function checkConnection() {
@@ -237,18 +517,17 @@
             loadingScreen.style.display = 'none';
         }
         
-        // Esconder a tela de carregamento
+        // Esconder a tela de carregamento sem transição
         function hideLoadingScreen() {
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-            }, 300);
+            // Remover diretamente sem animação para evitar tela branca
+            loadingScreen.style.display = 'none';
         }
         
         // Evento de carregamento do iframe
         appFrame.onload = function() {
             console.log('Frame carregado com sucesso');
-            hideLoadingScreen();
+            // Pequeno atraso para garantir que o iframe esteja completamente renderizado
+            setTimeout(hideLoadingScreen, 100);
         };
         
         // Evento de erro do iframe
@@ -317,6 +596,40 @@
         
         // Verificar conexão inicial
         checkConnection();
+        
+        // Adicionar botão para alterar o nome a qualquer momento
+        document.getElementById('user-name').addEventListener('click', () => {
+            // Preencher o input com o nome atual (sem emoji)
+            const currentName = localStorage.getItem('userName') || '';
+            userNameInput.value = currentName;
+            
+            // Selecionar o gênero atual
+            const currentGender = localStorage.getItem('userGender') || 'neutral';
+            if (currentGender === 'male') {
+                maleOption.classList.add('selected');
+                femaleOption.classList.remove('selected');
+            } else if (currentGender === 'female') {
+                femaleOption.classList.add('selected');
+                maleOption.classList.remove('selected');
+            } else {
+                // Neutro - nenhum selecionado
+                maleOption.classList.remove('selected');
+                femaleOption.classList.remove('selected');
+            }
+            
+            selectedGender = currentGender;
+            
+            // Mostrar o modal
+            nameModal.style.display = 'flex';
+        });
+        
+        // Permitir fechar o modal clicando fora dele
+        nameModal.addEventListener('click', (e) => {
+            if (e.target === nameModal) {
+                nameModal.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
+
