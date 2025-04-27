@@ -3,32 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Leydiane</title>
-
-    <!-- Primary Meta Tags -->
-    <meta name="title" content="Leydiane💄">
-    <meta name="description" content="VGerencie suas compras e parcelas de forma simples e eficiente">
-
-    <!-- Open Graph / Facebook -->
+    <title>CRED-LEYDIANE</title>
+    <!-- Meta tags mantidos como estavam -->
+    <meta name="title" content="LEYDIANE💄">
+    <meta name="description" content="Gerencie suas compras e parcelas de forma simples e eficiente">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://credi-boti.leydiane.starktech.net.br">
-    <meta property="og:title" content="Leydiane💄">
+    <meta property="og:title" content="CRED-LEYDIANE💄">
     <meta property="og:description" content="Gerencie suas compras e parcelas de forma simples e eficiente">
     <meta property="og:image" content="https://i.ibb.co/vx4BtbSv/Sem-t-tulo-1.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://credi-boti.leydiane.starktech.net.br">
-    <meta name="twitter:title" content="Leydiane💄">
+    <meta name="twitter:title" content="CRED-LEYDIANE💄">
     <meta name="twitter:description" content="Gerencie suas compras e parcelas de forma simples e eficiente">
     <meta name="twitter:image" content="https://i.ibb.co/vx4BtbSv/Sem-t-tulo-1.pngg">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-
     <style>
         body, html {
             margin: 0;
@@ -36,37 +30,256 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            position: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        .frame-container {
+        
+        #app-container {
             width: 100%;
             height: 100%;
+            position: relative;
+        }
+        
+        /* Tela de carregamento minimalista */
+        #loading-screen {
             position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-        }
-
-        iframe {
             width: 100%;
             height: 100%;
-            border: none;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.2s;
+        }
+        
+        .loading-container {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .logo {
+            max-width: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Estilos para o iframe */
+        .frame-container {
+            width: 100%;
+            height: 100%;
             position: absolute;
             top: 0;
             left: 0;
         }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Estilos para o botão de instalação */
+        #install-button {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: none;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+        
+        #install-button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Estado offline */
+        #offline-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 2000;
+            display: none;
+        }
+        
+        .retry-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
-    <div class="frame-container">
-    <iframe 
-        src="https://script.google.com/macros/s/AKfycbwc7y3ppin-zl17h9sQ_FEJ39RAhjvF8sd0FqMDknTqOiGyMMz8DF-g7Z-x27eFgAU8/exec"
-        allow="autoplay"
-        allowfullscreen
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation">
-    </iframe>
-</div>
+    <div id="app-container">
+        <!-- Tela de carregamento minimalista -->
+        <div id="loading-screen">
+            <div class="loading-container">
+                <img src="https://i.ibb.co/vx4BtbSv/Sem-t-tulo-1.png" alt="Logo" class="logo">
+                <div class="loading-spinner"></div>
+            </div>
+        </div>
+        
+        <!-- Mensagem offline -->
+        <div id="offline-message">
+            <p>Você está offline. Verifique sua conexão com a internet.</p>
+            <button class="retry-button" onclick="window.location.reload()">Tentar Novamente</button>
+        </div>
+        
+        <!-- Frame do aplicativo -->
+        <div class="frame-container" id="frame-container">
+            <iframe 
+                id="app-frame"
+                src="https://script.google.com/macros/s/AKfycbwlrDPmfSWwUszTKT14L01675n2P1Oy3GvPQbI7Eesn9a5NReHYyhENvQYoIHxefc8/exec"
+                allow="autoplay; camera; microphone; fullscreen"
+                allowfullscreen
+                loading="eager"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-top-navigation">
+            </iframe>
+        </div>
+        
+        <!-- Botão de instalação -->
+        <button id="install-button">Adicionar à tela inicial</button>
+    </div>
+
+    <script>
+        // Elementos principais
+        const loadingScreen = document.getElementById('loading-screen');
+        const appFrame = document.getElementById('app-frame');
+        const installButton = document.getElementById('install-button');
+        const offlineMessage = document.getElementById('offline-message');
+        
+        // Variável para o prompt de instalação
+        let deferredPrompt;
+        
+        // Verificar conexão com a internet
+        function checkConnection() {
+            if (!navigator.onLine) {
+                showOfflineMessage();
+                return false;
+            }
+            return true;
+        }
+        
+        // Mostrar mensagem offline
+        function showOfflineMessage() {
+            offlineMessage.style.display = 'block';
+            loadingScreen.style.display = 'none';
+        }
+        
+        // Esconder a tela de carregamento
+        function hideLoadingScreen() {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 200);
+        }
+        
+        // Evento de carregamento do iframe
+        appFrame.onload = function() {
+            console.log('Frame carregado com sucesso');
+            hideLoadingScreen();
+        };
+        
+        // Evento de erro do iframe
+        appFrame.onerror = function() {
+            console.error('Erro ao carregar o iframe');
+            if (navigator.onLine) {
+                // Se estiver online mas o iframe falhou, tentar recarregar
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+            } else {
+                showOfflineMessage();
+            }
+        };
+        
+        // Timeout para garantir que a tela de carregamento não fique presa
+        setTimeout(function() {
+            hideLoadingScreen();
+        }, 5000);
+        
+        // Verificar se o service worker é suportado
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(error => {
+                    console.error('Erro ao registrar o Service Worker:', error);
+                });
+            });
+        }
+        
+        // Evento para capturar o prompt de instalação
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installButton.style.display = 'block';
+        });
+        
+        // Configurar o botão de instalação
+        installButton.addEventListener('click', () => {
+            installButton.style.display = 'none';
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                deferredPrompt = null;
+            });
+        });
+        
+        // Verificar se o app já está instalado
+        window.addEventListener('appinstalled', () => {
+            installButton.style.display = 'none';
+        });
+        
+        // Verificar se o app está sendo executado em modo standalone
+        if (window.matchMedia('(display-mode: standalone)').matches || 
+            window.navigator.standalone === true) {
+            installButton.style.display = 'none';
+        }
+        
+        // Eventos de conexão
+        window.addEventListener('online', () => {
+            offlineMessage.style.display = 'none';
+            window.location.reload();
+        });
+        
+        window.addEventListener('offline', () => {
+            showOfflineMessage();
+        });
+        
+        // Verificar conexão inicial
+        checkConnection();
+    </script>
 </body>
 </html>
