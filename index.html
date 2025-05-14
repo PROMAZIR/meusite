@@ -289,7 +289,7 @@
         <div class="frame-container" id="frame-container">
             <iframe 
                 id="app-frame"
-                src="https://script.google.com/macros/s/AKfycbyJBnAkw_TRGTKEXlmWmA53qErOtavbzrbohZYBAfY4hapgmCunrCeF-xgK6AmfHrJS/exec"
+                src="https://script.google.com/macros/s/AKfycbzeoHz8dqqDW_KNTTDLEsd80ivJsKHK2GjBbmVZT8pQPvFsUZcA9HCv856cZksrCi9o/exec"
                 allow="autoplay; camera; microphone; fullscreen"
                 allowfullscreen
                 loading="eager"
@@ -718,107 +718,50 @@ nameModal.addEventListener('click', (e) => {
     }
 });
 
-// Função para criar um menu flutuante com botões de ação
+// Função para criar o menu flutuante
 function createFloatingActionMenu() {
-    // Remover botões existentes para evitar duplicação
-     // Botão de atualização do PWA
-    const pwaUpdateButton = document.createElement('button');
-    pwaUpdateButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 9l-7 7-7-7"></path>
-        </svg>
-        <span>Atualizar PWA</span>
-    `;
-    pwaUpdateButton.style.cssText = `
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 16px;
-        background-color: white;
-        color: #4a4a4a;
-        border: none;
-        text-align: left;
-        cursor: pointer;
-        width: 100%;
-        transition: background-color 0.2s;
-        border-top: 1px solid #f0f0f0;
-    `;
-    pwaUpdateButton.addEventListener('mouseover', () => {
-        pwaUpdateButton.style.backgroundColor = '#f5f5f5';
-    });
-    pwaUpdateButton.addEventListener('mouseout', () => {
-        pwaUpdateButton.style.backgroundColor = 'white';
-    });
-    pwaUpdateButton.addEventListener('click', () => {
-        forcePWAUpdate();
-        
-        // Fechar o menu
-        menu.style.display = 'none';
-        menuButton.classList.remove('active');
-        menuButton.style.transform = 'rotate(0)';
-    });
-    
-     // Remover botões existentes para evitar duplicação
-    const existingMenu = document.getElementById('floating-action-menu');
-    if (existingMenu) {
-        existingMenu.remove();
-    }
-    
-    const existingButton = document.getElementById('floating-menu-button');
-    if (existingButton) {
-        existingButton.remove();
-    }
-    
-    // Obter a cor do tema atual para o botão
-    const currentGender = localStorage.getItem('userGender') || 'neutral';
-    const themeColor = colors[currentGender];
-    
-    // Criar o botão principal (minimizado)
+    // Criar o botão de menu (emoji de joinha)
     const menuButton = document.createElement('button');
-    menuButton.id = 'floating-menu-button';
-    menuButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="1"></circle>
-            <circle cx="12" cy="5" r="1"></circle>
-            <circle cx="12" cy="19" r="1"></circle>
-        </svg>
-    `;
+    menuButton.className = 'admin-float-button';
+    menuButton.innerHTML = '👍'; // Emoji de joinha
     menuButton.style.cssText = `
         position: fixed;
-        bottom: 80px; /* Posicionado mais acima para evitar sobreposição */
-        right: 20px;
-        width: 40px;
-        height: 40px;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
-        background-color: ${themeColor || 'rgba(78, 154, 241, 0.8)'};
+        background-color: rgba(0, 123, 255, 0.8);
         color: white;
         border: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        z-index: 1001;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
         transition: all 0.3s ease;
+        font-size: 16px;
     `;
-    
-    // Criar o menu (inicialmente oculto)
+
+    // Criar o menu dropdown
     const menu = document.createElement('div');
-    menu.id = 'floating-action-menu';
     menu.style.cssText = `
         position: fixed;
-        bottom: 130px; /* Posicionado mais acima para evitar sobreposição */
-        right: 20px;
+        bottom: 65px;
+        left: 50%;
+        transform: translateX(-50%);
         background-color: white;
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        z-index: 1000;
         display: none;
         flex-direction: column;
         overflow: hidden;
-        transition: all 0.3s ease;
+        z-index: 1000;
+        width: 200px;
     `;
-    
+
     // Botão de atualização do iframe
     const refreshButton = document.createElement('button');
     refreshButton.innerHTML = `
@@ -864,7 +807,6 @@ function createFloatingActionMenu() {
         // Fechar o menu
         menu.style.display = 'none';
         menuButton.classList.remove('active');
-        menuButton.style.transform = 'rotate(0)';
     });
     
     // Botão de atualização do Google Apps Script
@@ -903,7 +845,6 @@ function createFloatingActionMenu() {
         // Fechar o menu
         menu.style.display = 'none';
         menuButton.classList.remove('active');
-        menuButton.style.transform = 'rotate(0)';
     });
     
     // Adicionar botões ao menu
@@ -915,19 +856,20 @@ function createFloatingActionMenu() {
         if (menu.style.display === 'none' || menu.style.display === '') {
             menu.style.display = 'flex';
             menuButton.classList.add('active');
-            menuButton.style.transform = 'rotate(90deg)';
+            menuButton.style.backgroundColor = '#28a745'; // Muda para verde quando ativo
         } else {
             menu.style.display = 'none';
             menuButton.classList.remove('active');
-            menuButton.style.transform = 'rotate(0)';
+            menuButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)'; // Volta para azul
         }
     });
-        // Fechar o menu ao clicar fora dele
+    
+    // Fechar o menu ao clicar fora dele
     document.addEventListener('click', (event) => {
         if (!menu.contains(event.target) && event.target !== menuButton) {
             menu.style.display = 'none';
             menuButton.classList.remove('active');
-            menuButton.style.transform = 'rotate(0)';
+            menuButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
         }
     });
     
@@ -936,70 +878,19 @@ function createFloatingActionMenu() {
     document.body.appendChild(menu);
     
     // Adicionar evento para verificar se o Service Worker foi atualizado
-    navigator.serviceWorker.addEventListener('message', event => {
-        if (event.data === 'cacheCleared') {
-            showToast('Cache limpo! Aplicativo atualizado.');
-            
-            // Recarregar a página após um pequeno atraso
-            setTimeout(() => {
-                window.location.reload(true);
-            }, 1000);
-        }
-    });
-}
-    
-    // Função para forçar a atualização do PWA
-function forcePWAUpdate() {
-    // Mostrar tela de carregamento
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) {
-        loadingScreen.style.display = 'flex';
-    }
-    
-    // Limpar todo o cache do navegador para este site
-    if ('caches' in window) {
-        caches.keys().then(function(cacheNames) {
-            return Promise.all(
-                cacheNames.map(function(cacheName) {
-                    console.log('Deletando cache:', cacheName);
-                    return caches.delete(cacheName);
-                })
-            );
-        }).then(function() {
-            console.log('Todos os caches foram limpos');
-            
-            // Limpar localStorage (exceto informações do usuário)
-            const userName = localStorage.getItem('userName');
-            const userGender = localStorage.getItem('userGender');
-            
-            localStorage.clear();
-            
-            // Restaurar informações do usuário
-            if (userName) localStorage.setItem('userName', userName);
-            if (userGender) localStorage.setItem('userGender', userGender);
-            
-            // Atualizar o service worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                    for (let registration of registrations) {
-                        registration.update();
-                    }
-                });
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.addEventListener('message', event => {
+            if (event.data === 'cacheCleared') {
+                showToast('Cache limpo! Aplicativo atualizado.');
+                
+                // Recarregar a página após um pequeno atraso
+                setTimeout(() => {
+                    window.location.reload(true);
+                }, 1000);
             }
-            
-            // Recarregar a página completamente
-            showToast('Aplicativo atualizado! Recarregando...');
-            
-            setTimeout(function() {
-                window.location.reload(true);
-            }, 1500);
         });
-    } else {
-        // Fallback se a API de cache não estiver disponível
-        window.location.reload(true);
     }
 }
-
 
 // Função para forçar a atualização do iframe do Google Apps Script
 function forceGoogleAppsScriptUpdate() {
@@ -1012,7 +903,7 @@ function forceGoogleAppsScriptUpdate() {
     }
     
     // URL base do seu Google Apps Script
-    const baseUrl = "https://script.google.com/macros/s/AKfycbyJBnAkw_TRGTKEXlmWmA53qErOtavbzrbohZYBAfY4hapgmCunrCeF-xgK6AmfHrJS/exec";
+    const baseUrl = "https://script.google.com/macros/s/AKfycbzeoHz8dqqDW_KNTTDLEsd80ivJsKHK2GjBbmVZT8pQPvFsUZcA9HCv856cZksrCi9o/exec";
     
     // Adicionar parâmetros para evitar cache
     const timestamp = new Date().getTime();
@@ -1072,7 +963,6 @@ function forceGoogleAppsScriptUpdate() {
     localStorage.setItem('lastGASUpdate', timestamp.toString());
 }
 
-
 // Função para mostrar toast de notificação
 function showToast(message) {
     // Verificar se já existe um toast
@@ -1097,7 +987,7 @@ function showToast(message) {
             bottom: -50px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: ${themeColor || colors.neutral};
+            background-color: ${themeColor || '#007bff'};
             color: white;
             padding: 12px 24px;
             border-radius: 8px;
@@ -1131,6 +1021,15 @@ function showToast(message) {
     }, 3000);
 }
 
+// Função para recarregar o iframe
+function refreshIframe() {
+    const appFrame = document.getElementById('app-frame');
+    if (appFrame) {
+        const currentSrc = appFrame.src;
+        appFrame.src = currentSrc;
+    }
+}
+
 // Inicializar o menu flutuante quando o documento estiver pronto
 document.addEventListener('DOMContentLoaded', function() {
     createFloatingActionMenu();
@@ -1145,6 +1044,7 @@ document.addEventListener('DOMContentLoaded', function() {
         forceGoogleAppsScriptUpdate();
     }
 });
+
         
     </script>
 </body>
