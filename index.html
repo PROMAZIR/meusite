@@ -3,41 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CRED-Leydiane</title>
+    <title>CRED-StarkTech-Julia</title>
     <!-- Meta tags com emoji para identificação de gênero -->
-    <meta name="title" content="Leydiane💄">
-    <meta name="description" content="Gerencie suas compras e parcelas de forma simples e eficiente">
+    <meta name="title" content="Julia">
+    <meta name="description" content="Sua assistente virtual inteligente para conversas e ajuda no dia a dia">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://credi-boti.Leydiane.starktech.net.br">
-    <meta property="og:title" content="Leydiane💄">
-    <meta property="og:description" content="Gerencie suas compras e parcelas de forma simples e eficiente">
+    <meta property="og:url" content="https://jackeline-assistant.net.br">
+    <meta property="og:title" content="Julia">
+    <meta property="og:description" content="Sua assistente virtual inteligente para conversas e ajuda no dia a dia">
     <meta property="og:image" content="https://i.ibb.co/kj8jVkq/Logotipo-Faustino-Representa-es-e-Vendas-Moderno-Preto-Branco-2.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://credi-boti.Leydiane.starktech.net.br">
-    <meta name="twitter:title" content="Leydiane💄">
-    <meta name="twitter:description" content="Gerencie suas compras e parcelas de forma simples e eficiente">
+    <meta name="twitter:url" content="https://jackeline-assistant.net.br">
+    <meta name="twitter:title" content="Julia">
+    <meta name="twitter:description" content="Sua assistente virtual inteligente para conversas e ajuda no dia a dia">
     <meta name="twitter:image" content="https://i.ibb.co/kj8jVkq/Logotipo-Faustino-Representa-es-e-Vendas-Moderno-Preto-Branco-2.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+        
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: white;
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
         }
         
         #app-container {
             width: 100%;
             height: 100%;
             position: relative;
+        }
+        
+        /* Banner vertical feminino que ocupa toda a tela */
+        #vertical-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6b2d5c 0%, #8e3a75 50%, #b44b8f 100%);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                url('https://res.cloudinary.com/beleza-na-web/image/upload/f_auto,fl_progressive,q_50/v1/banner/2025_05_22_15_59_47_3/ee7e3a2b-e999-4499-8036-a58ec6783942-diadoamor-kitscombos-cards-25c08-750x1136-00.png');
+            background-size: cover, cover, contain;
+            background-position: center, center, center;
+            background-repeat: no-repeat, no-repeat, no-repeat;
+            background-blend-mode: overlay;
+            z-index: 9999; /* Aumentado para ficar acima de tudo */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+		
+        /* Estilo para o botão de começar */
+        .start-button {
+            background: linear-gradient(45deg, #d81b60, #f06292);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(216, 27, 96, 0.5);
+            transition: all 0.3s ease;
+            z-index: 10000;
+            position: relative;
+            margin-top: 20px;
+        }
+
+            .start-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(216, 27, 96, 0.7);
+        }
+
+          /* Ajuste o estilo do container do conteúdo do banner */
+        #banner-content-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #6b2d5c 0%, #8e3a75 50%, #b44b8f 100%);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            background-size: cover;
+            background-position: center;
+            z-index: 9998;
+            display: none; /* Inicialmente escondido */
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+
+          /* Ajuste o estilo do conteúdo do banner */
+        #banner-content {
+            max-width: 90%;
+            width: 500px;
+            padding: 40px 30px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(20px);
+            transition: transform 0.5s ease;
+            text-align: center; /* Centralizar todo o texto */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centralizar elementos horizontalmente */
+            justify-content: center; /* Centralizar elementos verticalmente */
+        }
+
+
+        #banner-content-container.active {
+         opacity: 1;
+          visibility: visible;
+        }
+
+        #banner-content-container.active #banner-content {
+         transform: translateY(0);
+        }
+
+        /* Efeito de partículas animadas */
+        #vertical-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3), transparent);
+            background-repeat: repeat;
+            background-size: 150px 100px;
+            animation: sparkle 8s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes sparkle {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        
+        #banner-logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        #banner-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #ffffff, #f48fb1, #f06292);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+        #banner-subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+        #banner-description {
+            font-size: 14px;
+            margin-bottom: 40px;
+            color: #b0b0b0;
+            font-weight: 300;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+         #banner-button {
+            background: linear-gradient(45deg, #d81b60, #f06292, #f8bbd0);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(216, 27, 96, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+		
+        #banner-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        #banner-button:hover::before {
+            left: 100%;
+        }
+        
+         #banner-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(216, 27, 96, 0.6);
+            background: linear-gradient(45deg, #c2185b, #d81b60, #f06292);
+        }
+        #banner-button:active {
+            transform: translateY(-1px);
+        }
+        /* Indicadores visuais masculinos */
+        .tech-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .tech-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(240, 98, 146, 0.5), transparent);
+            height: 1px;
+            width: 100%;
+            animation: techScan 4s linear infinite;
+        }
+        .tech-line:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .tech-line:nth-child(2) { top: 60%; animation-delay: 2s; }
+        .tech-line:nth-child(3) { top: 80%; animation-delay: 1s; }
+        @keyframes techScan {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+         /* Ícones decorativos */
+        .icon-decoration {
+            position: absolute;
+            color: rgba(240, 98, 146, 0.3);
+            font-size: 24px;
+            animation: iconFloat 6s ease-in-out infinite;
+        }
+        .icon-decoration:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .icon-decoration:nth-child(2) { top: 25%; right: 15%; animation-delay: 2s; }
+        .icon-decoration:nth-child(3) { bottom: 30%; left: 15%; animation-delay: 4s; }
+        .icon-decoration:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 1s; }
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.7; }
         }
         
         /* Tela de carregamento com cumprimentos */
@@ -47,7 +289,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: white;
+            background: linear-gradient(135deg, #6b2d5c 0%, #8e3a75 50%, #b44b8f 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -56,35 +298,37 @@
         
         .loading-container {
             text-align: center;
-            padding: 20px;
-            border-radius: 15px;
-            background-color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 40px;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             max-width: 85%;
         }
         
         .greeting {
-            font-size: 22px;
-            font-weight: 600;
-            color: #4a4a4a;
-            margin-bottom: 5px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
         }
         
         .user-name {
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: bold;
-            /* Cor será definida dinamicamente pelo JavaScript */
+            font-size: 22px;
+            margin-bottom: 30px;
+            font-weight: 500;
+            color: #f06292;
         }
         
         .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #ff69b4; /* Cor padrão, será alterada pelo JS */
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #f06292;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
-            margin: 10px auto;
+            margin: 20px auto;
         }
         
         @keyframes spin {
@@ -116,16 +360,17 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            /* Cor será definida dinamicamente pelo JavaScript */
+            background: linear-gradient(45deg, #d81b60, #f06292);
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 12px 24px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4);
             z-index: 1000;
             display: none;
             cursor: pointer;
             border: none;
             font-size: 16px;
+            font-weight: 600;
         }
         
         /* Estado offline */
@@ -134,24 +379,29 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: center;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                       text-align: center;
             z-index: 2000;
             display: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .retry-button {
-            /* Cor será definida dinamicamente pelo JavaScript */
+            background: linear-gradient(45deg, #1976d2, #42a5f5);
             color: white;
             border: none;
-            padding: 10px 20px;
-            margin-top: 15px;
-            border-radius: 5px;
+            padding: 12px 24px;
+            margin-top: 20px;
+            border-radius: 25px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.4);
         }
         
         /* Modal para nome do usuário */
@@ -161,7 +411,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -170,126 +421,290 @@
         }
         
         .modal-content {
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             text-align: center;
             max-width: 85%;
-            width: 300px;
+            width: 350px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .modal-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #4a4a4a;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #ffffff;
         }
         
         #user-name-input {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             font-size: 16px;
             box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+        #user-name-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        #user-name-input:focus {
+            outline: none;
+            border-color: #f06292;
+            box-shadow: 0 0 15px rgba(240, 98, 146, 0.3);
         }
         
         /* Seleção de gênero */
         .gender-selection {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            gap: 10px;
         }
         
         .gender-option {
             flex: 1;
-            padding: 10px;
-            margin: 0 5px;
-            border: 2px solid #ddd;
-            border-radius: 5px;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-weight: 500;
         }
         
         .gender-option.selected {
-            border-color: #4a4a4a;
-            background-color: #f8f8f8;
-        }
-        
-        .gender-option:first-child.selected {
-            border-color: #4e9af1;
-            background-color: #eef5ff;
+            border-color: #f06292;
+            background: rgba(240, 98, 146, 0.2);
+            box-shadow: 0 0 15px rgba(240, 98, 146, 0.3);
         }
         
         .gender-option:last-child.selected {
             border-color: #ff69b4;
-            background-color: #fff0f7;
+            background: rgba(255, 105, 180, 0.2);
+        }
+        
+        .gender-option:last-child.selected {
+            border-color: #ff69b4;
+            background: rgba(255, 105, 180, 0.2);
         }
         
         #save-name-button {
-            /* Cor será definida dinamicamente pelo JavaScript */
+            background: linear-gradient(45deg, #1976d2, #42a5f5);
             color: white;
             border: none;
-            padding: 12px 20px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 25px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: 700;
             width: 100%;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.4);
+            transition: all 0.3s ease;
         }
-      /* Estilos para o container de logos */
-.logo-container {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Estilos base para as logos */
-.logo {
-    position: absolute;
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    opacity: 0;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.95);
-}
-
-/* Logo ativa */
-.logo.active {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
-/* Animação de pulsar suave */
-@keyframes pulse {
-    0% { transform: translate(-50%, -50%) scale(1); }
-    50% { transform: translate(-50%, -50%) scale(1.05); }
-    100% { transform: translate(-50%, -50%) scale(1); }
-}
-
-/* Classe para aplicar a animação de pulsar */
-.pulse {
-    animation: pulse 4s infinite ease-in-out;
-}
-
+        #save-name-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(25, 118, 210, 0.6);
+        }
+        
+        /* Estilos para o container de logos */
+        .logo-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Estilos base para as logos */
+        .logo {
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+        
+        /* Logo ativa */
+        .logo.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        
+        /* Animação de pulsar suave */
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        /* Classe para aplicar a animação de pulsar */
+        .pulse {
+            animation: pulse 4s infinite ease-in-out;
+        }
+        
+        /* Estilo para o botão de atualização */
+        #refresh-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        #refresh-button svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.5s ease;
+            stroke: #64b5f6;
+        }
+        
+        #refresh-button:hover {
+            background: rgba(100, 181, 246, 0.2);
+            transform: scale(1.1);
+        }
+        
+        #refresh-button:hover svg {
+            transform: rotate(180deg);
+        }
+        
+        #refresh-button.refreshing svg {
+            animation: spin 1s linear infinite;
+        }
+        
+        /* Estilo para o indicador de progresso */
+        .refresh-progress {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: #64b5f6;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.3s;
+            animation: spin 1s linear infinite;
+        }
+        
+        #refresh-button.refreshing .refresh-progress {
+            opacity: 1;
+        }
+        
+        /* Toast notification */
+        #toast-notification {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 2000;
+            transition: all 0.3s ease;
+            opacity: 0;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Responsividade para telas menores */
+        @media (max-width: 480px) {
+            #banner-title {
+                font-size: 28px;
+            }
+            
+            #banner-subtitle {
+                font-size: 16px;
+            }
+            
+            #banner-button {
+                padding: 14px 32px;
+                font-size: 16px;
+            }
+            
+            #banner-content {
+                padding: 30px 15px;
+            }
+        }
     </style>
 </head>
 <body>
     <div id="app-container">
+        <!-- Banner vertical masculino que ocupa toda a tela -->
+        <div id="vertical-banner">
+    <!-- Elementos tecnológicos decorativos -->
+    <div class="tech-elements">
+        <div class="tech-line"></div>
+        <div class="tech-line"></div>
+        <div class="tech-line"></div>
+    </div>
+    
+    <!-- Ícones decorativos -->
+    <div class="icon-decoration">💬</div>
+    <div class="icon-decoration">💖</div>
+    <div class="icon-decoration">🌟</div>
+    <div class="icon-decoration">✨</div>
+    
+    <!-- Botão inicial para começar -->
+    <button id="start-button" class="start-button">Começar</button>
+</div>
+
+<!-- Adicione este novo div para o conteúdo que aparecerá após clicar em "Começar" -->
+<div id="banner-content-container">
+    <div id="banner-content">
+        <img id="banner-logo" src="https://i.ibb.co/kj8jVkq/Logotipo-Faustino-Representa-es-e-Vendas-Moderno-Preto-Branco-2.png" alt="Logo">
+        <div id="banner-title">CRED-StarkTech</div>
+        <div id="banner-subtitle">Sistema de Gestão Financeira</div>
+        <div id="banner-description">
+            Controle total das suas finanças com tecnologia avançada. 
+            Gerencie compras, parcelas e orçamentos de forma profissional.
+        </div>
+        <button id="banner-button">🚀 Acessar Sistema</button>
+    </div>
+</div>
+        <!-- Botão de atualização -->
+        <button id="refresh-button" title="Atualizar aplicativo">
+            <div class="refresh-progress"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 4v6h-6"></path>
+                <path d="M1 20v-6h6"></path>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"></path>
+                <path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"></path>
+            </svg>
+        </button>
+        
         <!-- Frame do aplicativo (colocado primeiro para pré-carregar) -->
         <div class="frame-container" id="frame-container">
-            <iframe 
+            <iframe
                 id="app-frame"
-                src="https://script.google.com/macros/s/AKfycbzeoHz8dqqDW_KNTTDLEsd80ivJsKHK2GjBbmVZT8pQPvFsUZcA9HCv856cZksrCi9o/exec"
+                src= "https://script.google.com/macros/s/AKfycbwjlXAo1FeFq5ns546Sw1KKUwkYi6GdiXjFOz99zSsMyx7GSAhdbM2eXFMLc69o1TuR/exec?usp=sharing"
                 allow="autoplay; camera; microphone; fullscreen"
                 allowfullscreen
                 loading="eager"
@@ -297,33 +712,35 @@
             </iframe>
         </div>
         
-<!-- Tela de carregamento com cumprimentos (colocada por cima) -->
-<div id="loading-screen">
-    <div class="loading-container">
-        <div class="logo-container">
-            <img src="https://i.ibb.co/vx4BtbSv/Sem-t-tulo-1.png" alt="Logo 1" class="logo logo-1 active">
-            <img src="https://i.ibb.co/kj8jVkq/Logotipo-Faustino-Representa-es-e-Vendas-Moderno-Preto-Branco-2.png" alt="Logo 2" class="logo logo-2">
+        <!-- Tela de carregamento com cumprimentos (colocada por cima) -->
+        <div id="loading-screen">
+            <div class="loading-container">
+                <div class="logo-container">
+                    <img src="https://i.ibb.co/vx4BtbSv/Sem-t-tulo-1.png" alt="Logo 1" class="logo logo-1 active">
+                    <img src="https://i.ibb.co/kj8jVkq/Logotipo-Faustino-Representa-es-e-Vendas-Moderno-Preto-Branco-2.png" alt="Logo 2" class="logo logo-2">
+                </div>
+                <div class="greeting" id="greeting">Olá!</div>
+                <div class="user-name" id="user-name">Bem-vindo!</div>
+                
+                <div class="loading-spinner" id="loading-spinner"></div>
+            </div>
         </div>
-        <div class="greeting" id="greeting">Olá!</div>
-        <div class="user-name" id="user-name">Bem-vindo(a)!</div>
-        <div class="loading-spinner" id="loading-spinner"></div>
-    </div>
-</div>
         
         <!-- Mensagem offline -->
         <div id="offline-message">
-            <p>Você está offline. Verifique sua conexão com a internet.</p>
-            <button class="retry-button" id="retry-button" onclick="window.location.reload()">Tentar Novamente</button>
+            <p>🔌 Você está offline</p>
+            <p>Verifique sua conexão com a internet para continuar.</p>
+            <button class="retry-button" id="retry-button" onclick="window.location.reload()">🔄 Tentar Novamente</button>
         </div>
         
         <!-- Modal para inserir nome -->
         <div id="name-modal">
             <div class="modal-content">
-                <div class="modal-title">Como você gostaria de ser chamado(a)?</div>
+                <div class="modal-title">👋 Como você gostaria de ser chamado?</div>
                 <input type="text" id="user-name-input" placeholder="Digite seu nome" maxlength="20">
                 
                 <div class="gender-selection">
-                    <div class="gender-option" id="male-option">
+                    <div class="gender-option selected" id="male-option">
                         <span>👨 Masculino</span>
                     </div>
                     <div class="gender-option" id="female-option">
@@ -331,721 +748,390 @@
                     </div>
                 </div>
                 
-                <button id="save-name-button">Salvar</button>
+                <button id="save-name-button">💾 Salvar</button>
             </div>
         </div>
         
         <!-- Botão de instalação -->
-        <button id="install-button">Adicionar à tela inicial</button>
+        <button id="install-button">📱 Adicionar à tela inicial</button>
     </div>
-
     <script>
-      // Elementos principais
-const loadingScreen = document.getElementById('loading-screen');
-const appFrame = document.getElementById('app-frame');
-const installButton = document.getElementById('install-button');
-const offlineMessage = document.getElementById('offline-message');
-const greeting = document.getElementById('greeting');
-const userName = document.getElementById('user-name');
-const nameModal = document.getElementById('name-modal');
-const userNameInput = document.getElementById('user-name-input');
-const saveNameButton = document.getElementById('save-name-button');
-const loadingSpinner = document.getElementById('loading-spinner');
-const retryButton = document.getElementById('retry-button');
-const maleOption = document.getElementById('male-option');
-const femaleOption = document.getElementById('female-option');
-
-// Cores baseadas no gênero
-const colors = {
-    male: '#4e9af1',    // Azul
-    female: '#ff69b4',  // Rosa
-    neutral: '#7e57c2'  // Roxo (neutro)
-};
-
-// Emojis baseados no gênero
-const emojis = {
-    male: '🎮',
-    female: '💄',
-    neutral: '👤'
-};
-
-// Variável para armazenar o gênero selecionado
-let selectedGender = 'neutral';
+        // Adicione uma variável de versão no topo do seu script
+        const APP_VERSION = '1.0.7'; // Incremente este valor quando fizer alterações no seu GAS
         
-      document.addEventListener('DOMContentLoaded', function() {
-    // Seleciona as logos
-    const logo1 = document.querySelector('.logo-1');
-    const logo2 = document.querySelector('.logo-2');
-    
-    // Inicializa: primeira logo ativa e com efeito de pulsar
-    logo1.classList.add('active', 'pulse');
-    
-    // Função para alternar entre as logos
-    function toggleLogos() {
-        if (logo1.classList.contains('active')) {
-            // Transição para a segunda logo
-            logo1.classList.remove('active', 'pulse');
-            logo2.classList.add('active', 'pulse');
-        } else {
-            // Transição para a primeira logo
-            logo2.classList.remove('active', 'pulse');
-            logo1.classList.add('active', 'pulse');
-        }
-    }
-    
-    // Alterna as logos a cada 5 segundos
-    setInterval(toggleLogos, 5000);
-});
-
-
-        
-// Função para aplicar o tema baseado no gênero
-function applyTheme(gender) {
-    const color = colors[gender] || colors.neutral;
-    
-    // Aplicar cor ao nome do usuário
-    userName.style.color = color;
-    
-    // Aplicar cor ao spinner
-    loadingSpinner.style.borderTopColor = color;
-    
-    // Aplicar cor aos botões
-    installButton.style.backgroundColor = color;
-    retryButton.style.backgroundColor = color;
-    saveNameButton.style.backgroundColor = color;
-    
-    // Salvar a preferência
-    localStorage.setItem('userGender', gender);
-    selectedGender = gender;
-}
-
-// Função para atualizar a cor do botão Salvar
-function updateSaveButtonColor() {
-    // Verificar o gênero selecionado ou usar o armazenado
-    const gender = selectedGender || localStorage.getItem('userGender') || 'neutral';
-    saveNameButton.style.backgroundColor = colors[gender];
-}
-
-// Função para extrair emoji e gênero da meta tag
-function detectGenderFromMetaTag() {
-    const metaTitle = document.querySelector('meta[name="title"]');
-    if (!metaTitle) return null;
-    
-    const titleContent = metaTitle.getAttribute('content');
-    
-    // Verificar emojis específicos
-    if (titleContent.includes('💄') || 
-        titleContent.includes('👩') || 
-        titleContent.includes('👧') || 
-        titleContent.includes('👱‍♀️')) {
-        return 'female';
-    } else if (titleContent.includes('👨') || 
-               titleContent.includes('👦') || 
-               titleContent.includes('👴') || 
-               titleContent.includes('🧔') ||
-               titleContent.includes('🎮')) {
-        return 'male';
-    }
-    
-    return null;
-}
-
-// Configurar seleção de gênero no modal
-maleOption.addEventListener('click', () => {
-    maleOption.classList.add('selected');
-    femaleOption.classList.remove('selected');
-    selectedGender = 'male';
-    
-    // Atualizar a cor do botão Salvar imediatamente
-    saveNameButton.style.backgroundColor = colors.male;
-});
-
-femaleOption.addEventListener('click', () => {
-    femaleOption.classList.add('selected');
-    maleOption.classList.remove('selected');
-    selectedGender = 'female';
-    
-    // Atualizar a cor do botão Salvar imediatamente
-    saveNameButton.style.backgroundColor = colors.female;
-});
-
-// Configurar saudação baseada no horário
-function setGreeting() {
-    const hour = new Date().getHours();
-    
-    if (hour >= 5 && hour < 12) {
-        greeting.textContent = 'Bom dia!';
-        
-    } else if (hour >= 12 && hour < 18) {
-        greeting.textContent = 'Boa tarde!';
-    } else {
-        greeting.textContent = 'Boa noite!';
-    }
-}
-
-// Função para obter o nome e gênero do usuário
-function getUserInfo() {
-    // Verificar se já existe um nome e gênero salvos
-    const storedName = localStorage.getItem('userName');
-    const storedGender = localStorage.getItem('userGender');
-    
-    // Se tiver informações salvas, usá-las
-    if (storedName) {
-        userName.textContent = storedName;
-        
-        if (storedGender) {
-            applyTheme(storedGender);
-            
-            // Adicionar emoji baseado no gênero
-            const emoji = emojis[storedGender];
-            if (!userName.textContent.includes(emoji)) {
-                userName.textContent += ' ' + emoji;
-            }
-            
-            return;
-        }
-    }
-    
-    // Tentar detectar gênero da meta tag
-    const detectedGender = detectGenderFromMetaTag();
-    
-    // Tentar obter o nome da meta tag title
-    const metaTitle = document.querySelector('meta[name="title"]');
-    if (metaTitle) {
-        const titleContent = metaTitle.getAttribute('content');
-        // Remover emoji e espaços extras
-        const cleanName = titleContent.replace(/[^\w\s]/gi, '').trim();
-        
-        if (cleanName) {
-            userName.textContent = cleanName;
-            
-            // Se detectou gênero, aplicar tema e salvar
-            if (detectedGender) {
-                applyTheme(detectedGender);
-                
-                // Adicionar emoji baseado no gênero
-                userName.textContent += ' ' + emojis[detectedGender];
-                
-                // Salvar as informações
-                localStorage.setItem('userName', cleanName);
-                return;
-            }
-        }
-    }
-    
-    // Se chegou aqui, mostrar o modal para o usuário inserir o nome
-    // Mas primeiro, vamos verificar se é a primeira execução
-    const isFirstRun = !localStorage.getItem('appLaunched');
-    if (isFirstRun || !storedName) {
-        // Marcar que o app já foi executado
-        localStorage.setItem('appLaunched', 'true');
-        
-        // Mostrar o modal após um pequeno atraso
-        setTimeout(() => {
-            nameModal.style.display = 'flex';
-            // Atualizar a cor do botão Salvar
-            updateSaveButtonColor();
-        }, 1000);
-    } else {
-        // Aplicar tema neutro se não tiver gênero definido
-        applyTheme('neutral');
-    }
-}
-
-// Configurar o botão de salvar nome
-saveNameButton.addEventListener('click', () => {
-    const name = userNameInput.value.trim();
-    if (name) {
-        // Salvar nome
-        localStorage.setItem('userName', name);
-        
-        // Aplicar tema baseado no gênero selecionado
-        applyTheme(selectedGender);
-        
-        // Atualizar nome com emoji
-        userName.textContent = name + ' ' + emojis[selectedGender];
-        
-        // Fechar modal
-        nameModal.style.display = 'none';
-    } else {
-        // Destacar o input se estiver vazio
-        userNameInput.style.border = '1px solid red';
-        setTimeout(() => {
-            userNameInput.style.border = '1px solid #ddd';
-        }, 1000);
-    }
-});
-
-// Permitir pressionar Enter no input
-userNameInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        saveNameButton.click();
-    }
-});
-
-// Inicializar a saudação e o nome
-setGreeting();
-getUserInfo();
-
-// Verificar conexão com a internet
-function checkConnection() {
-    if (!navigator.onLine) {
-        showOfflineMessage();
-        return false;
-    }
-    return true;
-}
-
-// Mostrar mensagem offline
-function showOfflineMessage() {
-    offlineMessage.style.display = 'block';
-    loadingScreen.style.display = 'none';
-}
-
-// Esconder a tela de carregamento sem transição
-function hideLoadingScreen() {
-    // Remover diretamente sem animação para evitar tela branca
-    loadingScreen.style.display = 'none';
-}
-
-// Evento de carregamento do iframe
-appFrame.onload = function() {
-    console.log('Frame carregado com sucesso');
-    // Pequeno atraso para garantir que o iframe esteja completamente renderizado
-    setTimeout(hideLoadingScreen, 100);
-};
-
-// Evento de erro do iframe
-appFrame.onerror = function() {
-    console.error('Erro ao carregar o iframe');
-    if (navigator.onLine) {
-        // Se estiver online mas o iframe falhou, tentar recarregar
-        setTimeout(() => {
-            window.location.reload();
-        }, 3000);
-    } else {
-        showOfflineMessage();
-    }
-};
-
-// Timeout para garantir que a tela de carregamento não fique presa
-setTimeout(function() {
-    hideLoadingScreen();
-}, 5000);
-
-// Verificar se o service worker é suportado
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(error => {
-            console.error('Erro ao registrar o Service Worker:', error);
-        });
-    });
-}
-
-// Evento para capturar o prompt de instalação
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installButton.style.display = 'block';
-});
-
-// Configurar o botão de instalação
-installButton.addEventListener('click', () => {
-    installButton.style.display = 'none';
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult) => {
-        deferredPrompt = null;
-    });
-});
-
-// Verificar se o app já está instalado
-window.addEventListener('appinstalled', () => {
-    installButton.style.display = 'none';
-});
-
-// Verificar se o app está sendo executado em modo standalone
-if (window.matchMedia('(display-mode: standalone)').matches || 
-    window.navigator.standalone === true) {
-    installButton.style.display = 'none';
-}
-
-// Eventos de conexão
-window.addEventListener('online', () => {
-    offlineMessage.style.display = 'none';
-    window.location.reload();
-});
-
-window.addEventListener('offline', () => {
-    showOfflineMessage();
-});
-
-// Verificar conexão inicial
-checkConnection();
-
-// Adicionar botão para alterar o nome a qualquer momento
-document.getElementById('user-name').addEventListener('click', () => {
-    // Preencher o input com o nome atual (sem emoji)
-    const currentName = localStorage.getItem('userName') || '';
-    userNameInput.value = currentName;
-    
-    // Selecionar o gênero atual
-    const currentGender = localStorage.getItem('userGender') || 'neutral';
-    if (currentGender === 'male') {
-        maleOption.classList.add('selected');
-        femaleOption.classList.remove('selected');
-    } else if (currentGender === 'female') {
-        femaleOption.classList.add('selected');
-        maleOption.classList.remove('selected');
-    } else {
-        // Neutro - nenhum selecionado
-        maleOption.classList.remove('selected');
-        femaleOption.classList.remove('selected');
-    }
-    
-    selectedGender = currentGender;
-    
-    // Mostrar o modal
-    nameModal.style.display = 'flex';
-    
-    // Atualizar a cor do botão Salvar
-    updateSaveButtonColor();
-});
-
-// Permitir fechar o modal clicando fora dele
-nameModal.addEventListener('click', (e) => {
-    if (e.target === nameModal) {
-        nameModal.style.display = 'none';
-    }
-});
-
-// Função para criar o menu flutuante
-function createFloatingActionMenu() {
-    // Criar o botão de menu (emoji de joinha)
-    const menuButton = document.createElement('button');
-    menuButton.className = 'admin-float-button';
-    menuButton.innerHTML = '👍'; // Emoji de joinha
-    menuButton.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background-color: rgba(0, 123, 255, 0.8);
-        color: white;
-        border: none;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        transition: all 0.3s ease;
-        font-size: 16px;
-    `;
-
-    // Criar o menu dropdown
-    const menu = document.createElement('div');
-    menu.style.cssText = `
-        position: fixed;
-        bottom: 65px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        display: none;
-        flex-direction: column;
-        overflow: hidden;
-        z-index: 1000;
-        width: 200px;
-    `;
-
-    // Botão de atualização do iframe
-    const refreshButton = document.createElement('button');
-    refreshButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M23 4v6h-6"></path>
-            <path d="M1 20v-6h6"></path>
-            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"></path>
-            <path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"></path>
-        </svg>
-        <span>Atualizar App</span>
-    `;
-    refreshButton.style.cssText = `
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 16px;
-        background-color: white;
-        color: #4a4a4a;
-        border: none;
-        text-align: left;
-        cursor: pointer;
-        width: 100%;
-        transition: background-color 0.2s;
-    `;
-    refreshButton.addEventListener('mouseover', () => {
-        refreshButton.style.backgroundColor = '#f5f5f5';
-    });
-    refreshButton.addEventListener('mouseout', () => {
-        refreshButton.style.backgroundColor = 'white';
-    });
-    refreshButton.addEventListener('click', () => {
-        // Limpar o cache do service worker
-        if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-            navigator.serviceWorker.controller.postMessage('clearCache');
-        }
-        
-        // Recarregar o iframe
-        refreshIframe();
-        
-        // Mostrar toast
-        showToast('Atualizando aplicativo...');
-        
-        // Fechar o menu
-        menu.style.display = 'none';
-        menuButton.classList.remove('active');
-    });
-    
-    // Botão de atualização do Google Apps Script
-    const gasUpdateButton = document.createElement('button');
-    gasUpdateButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 2v6h-6"></path>
-            <path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path>
-            <path d="M3 12a9 9 0 0 0 6 8.5l2-5.5"></path>
-        </svg>
-        <span>Atualizar Conteúdo</span>
-    `;
-    gasUpdateButton.style.cssText = `
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 16px;
-        background-color: white;
-        color: #4a4a4a;
-        border: none;
-        text-align: left;
-        cursor: pointer;
-        width: 100%;
-        transition: background-color 0.2s;
-        border-top: 1px solid #f0f0f0;
-    `;
-    gasUpdateButton.addEventListener('mouseover', () => {
-        gasUpdateButton.style.backgroundColor = '#f5f5f5';
-    });
-    gasUpdateButton.addEventListener('mouseout', () => {
-        gasUpdateButton.style.backgroundColor = 'white';
-    });
-    gasUpdateButton.addEventListener('click', () => {
-        forceGoogleAppsScriptUpdate();
-        
-        // Fechar o menu
-        menu.style.display = 'none';
-        menuButton.classList.remove('active');
-    });
-    
-    // Adicionar botões ao menu
-    menu.appendChild(refreshButton);
-    menu.appendChild(gasUpdateButton);
-    
-    // Adicionar evento de clique ao botão principal
-    menuButton.addEventListener('click', () => {
-        if (menu.style.display === 'none' || menu.style.display === '') {
-            menu.style.display = 'flex';
-            menuButton.classList.add('active');
-            menuButton.style.backgroundColor = '#28a745'; // Muda para verde quando ativo
-        } else {
-            menu.style.display = 'none';
-            menuButton.classList.remove('active');
-            menuButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)'; // Volta para azul
-        }
-    });
-    
-    // Fechar o menu ao clicar fora dele
-    document.addEventListener('click', (event) => {
-        if (!menu.contains(event.target) && event.target !== menuButton) {
-            menu.style.display = 'none';
-            menuButton.classList.remove('active');
-            menuButton.style.backgroundColor = 'rgba(0, 123, 255, 0.8)';
-        }
-    });
-    
-    // Adicionar elementos ao DOM
-    document.body.appendChild(menuButton);
-    document.body.appendChild(menu);
-    
-    // Adicionar evento para verificar se o Service Worker foi atualizado
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.addEventListener('message', event => {
-            if (event.data === 'cacheCleared') {
-                showToast('Cache limpo! Aplicativo atualizado.');
-                
-                // Recarregar a página após um pequeno atraso
-                setTimeout(() => {
-                    window.location.reload(true);
-                }, 1000);
-            }
-        });
-    }
-}
-
-// Função para forçar a atualização do iframe do Google Apps Script
-function forceGoogleAppsScriptUpdate() {
-    const appFrame = document.getElementById('app-frame');
-    const loadingScreen = document.getElementById('loading-screen');
-    
-    // Mostrar tela de carregamento
-    if (loadingScreen) {
-        loadingScreen.style.display = 'flex';
-    }
-    
-    // URL base do seu Google Apps Script
-    const baseUrl = "https://script.google.com/macros/s/AKfycbzeoHz8dqqDW_KNTTDLEsd80ivJsKHK2GjBbmVZT8pQPvFsUZcA9HCv856cZksrCi9o/exec";
-    
-    // Adicionar parâmetros para evitar cache
-    const timestamp = new Date().getTime();
-    const randomParam = Math.floor(Math.random() * 1000000);
-    const noCache = `nocache=${timestamp}-${randomParam}`;
-    
-    // Construir a URL completa com parâmetros anti-cache
-    const fullUrl = baseUrl.includes('?') 
-        ? `${baseUrl}&${noCache}` 
-        : `${baseUrl}?${noCache}`;
-    
-    console.log("Atualizando iframe para:", fullUrl);
-    
-    // Limpar cache do Service Worker para esta URL
-    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        navigator.serviceWorker.controller.postMessage({
-            type: 'clearCache',
-            url: baseUrl
-        });
-    }
-    
-    // Atualizar o iframe com a nova URL
-    if (appFrame) {
-        // Primeiro, remover o iframe existente
+                // Elementos principais
+        const loadingScreen = document.getElementById('loading-screen');
         const frameContainer = document.getElementById('frame-container');
-        if (frameContainer) {
-            frameContainer.innerHTML = '';
-            
-            // Criar um novo iframe
-            const newFrame = document.createElement('iframe');
-            newFrame.id = 'app-frame';
-            newFrame.src = fullUrl;
-            newFrame.allow = "autoplay; camera; microphone; fullscreen";
-            newFrame.allowFullscreen = true;
-            newFrame.sandbox = "allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-downloads allow-top-navigation";
-            
-            // Adicionar evento de carregamento
-            newFrame.onload = function() {
-                console.log("Novo iframe carregado com sucesso");
-                // Esconder tela de carregamento após um pequeno atraso
-                setTimeout(() => {
-                    if (loadingScreen) {
-                        loadingScreen.style.display = 'none';
-                    }
-                }, 500);
-            };
-            
-            // Adicionar o novo iframe ao container
-            frameContainer.appendChild(newFrame);
-        }
-    }
-    
-    // Mostrar toast de notificação
-    showToast("Atualizando para a versão mais recente...");
-    
-    // Salvar timestamp da atualização
-    localStorage.setItem('lastGASUpdate', timestamp.toString());
-}
-
-// Função para mostrar toast de notificação
-function showToast(message) {
-    // Verificar se já existe um toast
-    let toast = document.getElementById('toast-notification');
-    if (toast) {
-        // Se já existe, apenas atualizar a mensagem e mostrar novamente
-        toast.textContent = message;
-        toast.style.opacity = '1';
-        toast.style.bottom = '80px';
-    } else {
-        // Criar um novo toast
-        toast = document.createElement('div');
-        toast.id = 'toast-notification';
-        toast.textContent = message;
+        const appFrame = document.getElementById('app-frame');
+        const verticalBanner = document.getElementById('vertical-banner');
+        const bannerButton = document.getElementById('banner-button');
+        const offlineMessage = document.getElementById('offline-message');
+        const nameModal = document.getElementById('name-modal');
+        const userNameInput = document.getElementById('user-name-input');
+        const saveNameButton = document.getElementById('save-name-button');
+        const greetingElement = document.getElementById('greeting');
+        const userNameElement = document.getElementById('user-name');
+        const maleOption = document.getElementById('male-option');
+        const femaleOption = document.getElementById('female-option');
+        const refreshButton = document.getElementById('refresh-button');
+        const installButton = document.getElementById('install-button');
+        const startButton = document.getElementById('start-button');
+        const bannerContentContainer = document.getElementById('banner-content-container');
         
-        // Obter a cor do tema atual
-        const currentGender = localStorage.getItem('userGender') || 'neutral';
-        const themeColor = colors[currentGender];
+        // Variáveis para controle
+        let deferredPrompt;
+        let userName = localStorage.getItem('userName') || '';
+        let userGender = localStorage.getItem('userGender') || 'male';
+        let isFrameLoaded = false;
+        let isFirstVisit = !localStorage.getItem('userName');
+        let isOffline = !navigator.onLine;
+        let loadingTimeout;
+        let logoInterval;
+        let currentLogo = 1;
+        let totalLogos = 2;
         
-        toast.style.cssText = `
-            position: fixed;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: ${themeColor || '#007bff'};
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 2000;
-            transition: all 0.3s ease;
-            opacity: 0;
-            font-size: 14px;
-        `;
-        
-        document.body.appendChild(toast);
-        
-        // Mostrar o toast com animação
-        setTimeout(() => {
+        // Função para mostrar notificação toast
+        function showToast(message, duration = 3000) {
+            const toast = document.getElementById('toast-notification') || createToastElement();
+            toast.textContent = message;
+            toast.style.bottom = '30px';
             toast.style.opacity = '1';
-            toast.style.bottom = '80px';
-        }, 10);
-    }
-    
-    // Esconder o toast após alguns segundos
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.bottom = '-50px';
+            
+            setTimeout(() => {
+                toast.style.bottom = '-60px';
+                toast.style.opacity = '0';
+            }, duration);
+        }
         
-        // Remover o elemento após a animação
-        setTimeout(() => {
-            if (toast.parentNode) {
-                toast.parentNode.removeChild(toast);
+        // Criar elemento toast se não existir
+        function createToastElement() {
+            const toast = document.createElement('div');
+            toast.id = 'toast-notification';
+            document.body.appendChild(toast);
+            return toast;
+        }
+        
+        // Função para alternar entre logos
+        function toggleLogos() {
+            const logos = document.querySelectorAll('.logo');
+            
+            // Remover classe active de todas as logos
+            logos.forEach(logo => {
+                logo.classList.remove('active', 'pulse');
+            });
+            
+            // Adicionar classe active à logo atual
+            const activeLogo = document.querySelector(`.logo-${currentLogo}`);
+            activeLogo.classList.add('active');
+            
+            // Adicionar animação de pulsar após um pequeno delay
+            setTimeout(() => {
+                activeLogo.classList.add('pulse');
+            }, 100);
+            
+            // Incrementar para a próxima logo
+            currentLogo = currentLogo % totalLogos + 1;
+        }
+        
+        // Iniciar alternância de logos
+        function startLogoRotation() {
+            // Limpar intervalo anterior se existir
+            if (logoInterval) clearInterval(logoInterval);
+            
+            // Definir intervalo para alternar logos
+            logoInterval = setInterval(toggleLogos, 5000);
+        }
+        
+        // Função para gerar saudação baseada na hora do dia
+        function getGreeting() {
+            const hour = new Date().getHours();
+            const isFemale = userGender === 'female';
+            
+            if (hour >= 5 && hour < 12) {
+                return isFemale ? "Bom dia!" : "Bom dia!";
+            } else if (hour >= 12 && hour < 18) {
+                return isFemale ? "Boa tarde!" : "Boa tarde!";
+            } else {
+                return isFemale ? "Boa noite!" : "Boa noite!";
             }
-        }, 300);
-    }, 3000);
-}
-
-// Função para recarregar o iframe
-function refreshIframe() {
-    const appFrame = document.getElementById('app-frame');
-    if (appFrame) {
-        const currentSrc = appFrame.src;
-        appFrame.src = currentSrc;
-    }
-}
-
-// Inicializar o menu flutuante quando o documento estiver pronto
-document.addEventListener('DOMContentLoaded', function() {
-    createFloatingActionMenu();
-    
-    // Verificar se precisa atualizar ao carregar a página
-    const lastUpdate = parseInt(localStorage.getItem('lastGASUpdate') || '0');
-    const now = new Date().getTime();
-    const oneHour = 60 * 60 * 1000;
-    
-    // Se a última atualização foi há mais de uma hora, atualizar automaticamente
-    if (now - lastUpdate > oneHour) {
-        forceGoogleAppsScriptUpdate();
-    }
-});
-
+        }
         
+        // Função para atualizar a saudação
+        function updateGreeting() {
+            const greeting = getGreeting();
+            greetingElement.textContent = greeting;
+            
+            if (userName) {
+                userNameElement.textContent = userName;
+            } else {
+                userNameElement.textContent = "Bem-vindo!";
+            }
+        }
+        
+        // Função para mostrar o modal de nome
+        function showNameModal() {
+            nameModal.style.display = 'flex';
+            userNameInput.focus();
+            
+            // Definir gênero selecionado
+            if (userGender === 'female') {
+                maleOption.classList.remove('selected');
+                femaleOption.classList.add('selected');
+            } else {
+                maleOption.classList.add('selected');
+                femaleOption.classList.remove('selected');
+            }
+        }
+        
+        // Função para salvar o nome do usuário
+        function saveName() {
+            const name = userNameInput.value.trim();
+            
+            if (name) {
+                userName = name;
+                localStorage.setItem('userName', userName);
+                localStorage.setItem('userGender', userGender);
+                nameModal.style.display = 'none';
+                updateGreeting();
+                showToast(`Olá, ${userName}! Suas preferências foram salvas.`);
+            } else {
+                userNameInput.classList.add('shake');
+                setTimeout(() => userNameInput.classList.remove('shake'), 500);
+            }
+        }
+        
+        // Função para mostrar a tela de carregamento
+        function showLoadingScreen() {
+            loadingScreen.style.display = 'flex';
+            updateGreeting();
+            startLogoRotation();
+            
+            // Definir um tempo máximo para o carregamento
+            loadingTimeout = setTimeout(() => {
+                hideLoadingScreen();
+            }, 10000); // 10 segundos
+        }
+        
+        // Função para esconder a tela de carregamento
+        function hideLoadingScreen() {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                loadingScreen.style.opacity = '1';
+            }, 500);
+            
+            clearTimeout(loadingTimeout);
+            
+            // Verificar se é a primeira visita
+            if (isFirstVisit) {
+                showNameModal();
+                isFirstVisit = false;
+            }
+        }
+        
+        // Função para mostrar o banner
+        function showBanner() {
+    // Mostrar o banner vertical principal
+    verticalBanner.style.display = 'flex';
+    verticalBanner.style.opacity = '1';
+    
+    // Esconder o conteúdo do banner
+    bannerContentContainer.classList.remove('active');
+    bannerContentContainer.style.display = 'none';
+    
+    // Esconder o frame do aplicativo
+    frameContainer.style.display = 'none';
+    
+    // Restaurar o botão de começar
+    startButton.style.display = 'block';
+    startButton.style.opacity = '1';
+}
+        
+        // Função para esconder o banner e mostrar o app
+        function hideBanner() {
+    verticalBanner.style.opacity = '0';
+    bannerContentContainer.style.opacity = '0';
+    
+    setTimeout(() => {
+        verticalBanner.style.display = 'none';
+        bannerContentContainer.style.display = 'none';
+        frameContainer.style.display = 'block';
+        
+        // Resetar opacidade para futuras exibições
+        verticalBanner.style.opacity = '1';
+        bannerContentContainer.style.opacity = '1';
+    }, 500);
+}
+        
+        // Função para verificar o status online/offline
+        function checkOnlineStatus() {
+            if (navigator.onLine) {
+                if (isOffline) {
+                    isOffline = false;
+                    offlineMessage.style.display = 'none';
+                    showToast('🌐 Você está online novamente!');
+                    
+                    // Recarregar o iframe se estava offline
+                    if (isFrameLoaded) {
+                        refreshApp();
+                    }
+                }
+            } else {
+                isOffline = true;
+                offlineMessage.style.display = 'flex';
+                showToast('📡 Você está offline. Algumas funções podem não estar disponíveis.');
+            }
+        }
+        
+        // Função para atualizar o aplicativo
+        function refreshApp() {
+            showLoadingScreen();
+            
+            // Adicionar classe de animação ao botão
+            refreshButton.classList.add('refreshing');
+            
+            // Atualizar o iframe com um timestamp para evitar cache
+            const timestamp = new Date().getTime();
+            const currentSrc = appFrame.src.split('?')[0];
+            appFrame.src = `${currentSrc}?v=${APP_VERSION}&t=${timestamp}`;
+            
+            // Mostrar toast
+            showToast('🔄 Atualizando aplicativo...');
+            
+            // Remover classe após 2 segundos
+            setTimeout(() => {
+                refreshButton.classList.remove('refreshing');
+            }, 2000);
+        }
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Verificar status online
+            checkOnlineStatus();
+            
+            // Mostrar banner inicialmente
+            showBanner();
+            
+            // Iniciar carregamento do app em segundo plano
+            showLoadingScreen();
+          });
+             // Modifique o event listener do botão de começar
+startButton.addEventListener('click', () => {
+    // Esconder o banner vertical principal
+    verticalBanner.style.opacity = '0';
+    setTimeout(() => {
+        verticalBanner.style.display = 'none';
+        
+        // Mostrar o conteúdo do banner
+        bannerContentContainer.style.display = 'flex';
+        setTimeout(() => {
+            bannerContentContainer.classList.add('active');
+        }, 50);
+    }, 500);
+});
+        // Evento para quando o iframe terminar de carregar
+        appFrame.addEventListener('load', () => {
+            isFrameLoaded = true;
+            hideLoadingScreen();
+        });
+        
+        // Evento para o botão do banner
+        bannerButton.addEventListener('click', () => {
+            hideBanner();
+        });
+        
+        // Eventos para seleção de gênero
+        maleOption.addEventListener('click', () => {
+            userGender = 'male';
+            maleOption.classList.add('selected');
+            femaleOption.classList.remove('selected');
+        });
+        
+        femaleOption.addEventListener('click', () => {
+            userGender = 'female';
+            femaleOption.classList.add('selected');
+            maleOption.classList.remove('selected');
+        });
+        
+        // Evento para salvar nome
+        saveNameButton.addEventListener('click', saveName);
+        
+        // Permitir salvar com Enter
+        userNameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') saveName();
+        });
+        
+        // Evento para o botão de atualização
+        refreshButton.addEventListener('click', refreshApp);
+        
+        // Eventos para detectar status online/offline
+        window.addEventListener('online', checkOnlineStatus);
+        window.addEventListener('offline', checkOnlineStatus);
+        
+        // Evento para o botão de instalação
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevenir o prompt automático
+            e.preventDefault();
+            // Salvar o evento para usar depois
+            deferredPrompt = e;
+            // Mostrar o botão de instalação
+            installButton.style.display = 'block';
+        });
+        
+        installButton.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            
+            // Mostrar o prompt de instalação
+            deferredPrompt.prompt();
+            
+            // Esperar pela escolha do usuário
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            // Limpar o prompt salvo
+            deferredPrompt = null;
+            
+            // Esconder o botão após a escolha
+            installButton.style.display = 'none';
+            
+            // Mostrar feedback
+            if (outcome === 'accepted') {
+                showToast('🎉 Obrigado por instalar nosso aplicativo!');
+            }
+        });
+        
+        // Verificar se o app já está instalado
+        window.addEventListener('appinstalled', () => {
+            installButton.style.display = 'none';
+            deferredPrompt = null;
+            showToast('🎉 Aplicativo instalado com sucesso!');
+        });
+        
+        // Verificar se está sendo executado como PWA
+        if (window.matchMedia('(display-mode: standalone)').matches || 
+            window.navigator.standalone === true) {
+            installButton.style.display = 'none';
+        }
+        
+        // Verificar atualizações periodicamente (a cada 30 minutos)
+        setInterval(() => {
+            if (navigator.onLine) {
+                // Verificar se há atualizações disponíveis
+                fetch(`check-updates.php?v=${APP_VERSION}`, { 
+                    cache: 'no-store',
+                    headers: { 'Cache-Control': 'no-cache' }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.updateAvailable) {
+                        showToast('🔄 Nova versão disponível! Atualizando...', 3000);
+                        setTimeout(refreshApp, 3000);
+                    }
+                })
+                .catch(() => {
+                    // Silenciosamente falhar se não conseguir verificar atualizações
+                });
+            }
+        }, 30 * 60 * 1000);
     </script>
 </body>
 </html>
